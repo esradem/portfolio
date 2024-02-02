@@ -42,11 +42,29 @@ First inside the Azure CLI you need to connect Kaggle and pull the dataset. If y
 
 ## Step by step 
 
-# CLI Bash comments:
---mkdir -p ~/.kaggle
---mv kaggle.json ~/.kaggle/kaggle.json
---chmod 600 ~/.kaggle/kaggle.json
+CLI Bash commands are:
+```
+Install the Kaggle API: If not already installed, you need to install the Kaggle API. This can be done in an Azure virtual machine or Azure Cloud Shell.
+pip install kaggle
 
+#Upload kaggle.json to your Azure VM or Cloud Shell, and set it up:
+
+mkdir ~/.kaggle
+cp path_to_your_kaggle.json ~/.kaggle/kaggle.json
+chmod 600 ~/.kaggle/kaggle.json
+
+# Download dataset from Kaggle
+kaggle datasets download -d dataset-owner/dataset-name -p /path/to/download
+
+# Unzip if necessary
+unzip /path/to/download/dataset-name.zip -d /path/to/download
+
+# Upload to Azure Blob Storage
+az storage blob upload --account-name yourstorageaccount --container-name yourcontainer --file "/path/to/download/dataset.csv" --name "dataset.csv"
+
+# Clean up local files if you don't need them after upload
+rm -rf /path/to/download/*
+```
 
 
 
