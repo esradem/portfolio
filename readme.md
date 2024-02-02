@@ -5,9 +5,9 @@
 To assess the evolution and impact of renewable energy sources on the total primary energy supply from 1960 to 2015.
 
 ## Scope:
-    --Renewable energy sources including hydro (excluding pumped storage), geothermal, solar, wind, tide, and wave.
-    --Bioenergy sources such as solid biofuels, biogasoline, biodiesels, other liquid biofuels, biogases, and the renewable fraction of municipal waste.
-    --Definition and inclusion criteria for biofuels and municipal waste in the context of renewable energy.
+-Renewable energy sources including hydro (excluding pumped storage), geothermal, solar, wind, tide, and wave.
+-Bioenergy sources such as solid biofuels, biogasoline, biodiesels, other liquid biofuels, biogases, and the renewable fraction of municipal waste.
+-Definition and inclusion criteria for biofuels and municipal waste in the context of renewable energy.
 
 ## Data Collection
 ### Sources:
@@ -20,20 +20,20 @@ Quantity of energy produced by each renewable source, measured in thousand tonne
 The percentage share of each renewable source in the total primary energy supply.
 ## Methodology
 ### Data Analysis:
-    -Calculate the annual contribution of each renewable energy source to the TPES.
-    -Analyze trends in renewable energy usage, identifying periods of significant growth or decline.
-    -Further analysis can be conducted; the impact of technological, economic, and policy factors on renewable energy development.
+-Calculate the annual contribution of each renewable energy source to the TPES.
+-Analyze trends in renewable energy usage, identifying periods of significant growth or decline.
+-Further analysis can be conducted; the impact of technological, economic, and policy factors on renewable energy development.
 ### Tools and Techniques:
  Analyzing the location-based data on renewable energy usage from 1960 to 2015 with a focus on tools like Python, Azure Data Factory, Synapse Analytics, and Power BI.
-    -Data cleaning and preprocessing.
-    -Exploratory data analysis (EDA) to understand trends, patterns, and anomalies in the data.
+-Data cleaning and preprocessing.
+-Exploratory data analysis (EDA) to understand trends, patterns, and anomalies in the data.
    
 
 # Prerequirement 
-Kaggle API Token
-Azure Subscription
-Azure Data Factory and Synapse Analysis
-Power BI Desktop
+-Kaggle API Token
+-Azure Subscription
+-Azure Data Factory and Synapse Analysis
+-Power BI Desktop
 # Setup
 
 # Step by step 
