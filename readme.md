@@ -42,7 +42,7 @@ First inside the Azure CLI you need to connect Kaggle and pull the dataset. If y
 
 ## Step by step 
 
-1 CLI Bash comments:
+# CLI Bash comments:
 --mkdir -p ~/.kaggle
 --mv kaggle.json ~/.kaggle/kaggle.json
 --chmod 600 ~/.kaggle/kaggle.json
@@ -50,10 +50,7 @@ First inside the Azure CLI you need to connect Kaggle and pull the dataset. If y
 
 
 
-2
-3
-4
-5
+
 
 
 # End
