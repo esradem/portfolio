@@ -33,7 +33,7 @@ The percentage share of each renewable source in the total primary energy supply
 - Kaggle API Token
 * Azure Subscription
 + Azure Data Lake Storage 
-+ Azure Data Factory and Synapse Analysis workspace
++ Azure Data Factory Studio and Synapse Analysis workspace
 * Power BI Desktop
 ## Setup
 First inside the Azure CLI you need to connect Kaggle and pull the dataset. If you want quicker way you can:
@@ -44,11 +44,10 @@ First inside the Azure CLI you need to connect Kaggle and pull the dataset. If y
 
 CLI Bash commands are:
 ```
-Install the Kaggle API: If not already installed, you need to install the Kaggle API. This can be done in an Azure virtual machine or Azure Cloud Shell.
+#Install the Kaggle API: If not already installed, you need to install the Kaggle API. This can be done in an Azure virtual machine or Azure Cloud Shell.
 pip install kaggle
 
 #Upload kaggle.json to your Azure VM or Cloud Shell, and set it up:
-
 mkdir ~/.kaggle
 cp path_to_your_kaggle.json ~/.kaggle/kaggle.json
 chmod 600 ~/.kaggle/kaggle.json
@@ -66,6 +65,9 @@ az storage blob upload --account-name yourstorageaccount --container-name yourco
 rm -rf /path/to/download/*
 ```
 
+After your data sattled to Data Lake Storage you can launch the Data Factory and create pipeline
+From Actyivities > Move and Transform > Copy data
+![ADF_1]
 
 
 
