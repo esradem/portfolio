@@ -43,10 +43,9 @@ First inside the Azure CLI you need to connect Kaggle and pull the dataset. If y
 ## Step by step 
 
 1 CLI Bash comments:
-
-mkdir -p ~/.kaggle
-mv kaggle.json ~/.kaggle/kaggle.json
-chmod 600 ~/.kaggle/kaggle.json
+--mkdir -p ~/.kaggle
+--mv kaggle.json ~/.kaggle/kaggle.json
+--chmod 600 ~/.kaggle/kaggle.json
 
 
 
