@@ -17,6 +17,7 @@ Data on renewable energy production and consumption, categorized by source (hydr
 Information on the primary energy equivalent conversion for various renewable sources. " Energy derived from solid biofuels, biogasoline, biodiesels, other liquid biofuels, biogases and the renewable fraction of municipal waste are also included. Biofuels are defined as fuels derived directly or indirectly from biomass (material obtained from living or recently living organisms). This includes wood, vegetal waste (including wood waste and crops used for energy production), ethanol, animal materials/wastes and sulphite lyes. Municipal waste comprises wastes produced by the residential, commercial and public service sectors that are collected by local authorities for disposal in a central location for the production of heat and/or power. This indicator is measured in thousand toe (tonne of oil equivalent) as well as in percentage of total primary energy supply."
 ### Metrics:
 Quantity of energy produced by each renewable source, measured in thousand tonne of oil equivalent (ktoe).
+'The tonne of oil equivalent (toe) is a unit of energy defined as the amount of energy released by burning one tonne of crude oil. It is approximately 42 gigajoules or 11.630 megawatt-hours.'
 The percentage share of each renewable source in the total primary energy supply.
 ## Methodology
 ### Data Analysis:
@@ -30,11 +31,14 @@ The percentage share of each renewable source in the total primary energy supply
    
 
 # Prerequirement 
-- Kaggle API Token
-* Azure Subscription
++ Kaggle API Token
++ Azure Subscription
 + Azure Data Lake Storage 
 + Azure Data Factory Studio and Synapse Analysis workspace
-* Power BI Desktop
++ Power BI Desktop
+After your data settled to ADLS you need to give necessary permissons to ADF and Synapse to create link services.
+1 Add you IP to Synapse Workspace through networking tab
+2 To access ADLS data, the ADF workspace should have the storage blob data contributor role in the ADLS account. This is done inside ADLS > Access Control tab
 ## Setup
 First inside the Azure CLI you need to connect Kaggle and pull the dataset. If you want quicker way you can:
 - Download Renewable energy dataset from Kaggle
@@ -64,12 +68,219 @@ az storage blob upload --account-name yourstorageaccount --container-name yourco
 # Clean up local files if you don't need them after upload
 rm -rf /path/to/download/*
 ```
+First create external table in the Synapse serverless SQL pool.
+'''
+#1-create external file format
+IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseDelimitedTextFormat') 
+	CREATE EXTERNAL FILE FORMAT [SynapseDelimitedTextFormat] 
+	WITH ( FORMAT_TYPE = DELIMITEDTEXT ,
+	       FORMAT_OPTIONS (
+			 FIELD_TERMINATOR = ',',
+			 USE_TYPE_DEFAULT = FALSE,
+			 FIRST_ROW = 2 
+			))
+GO
 
-After your data sattled to Data Lake Storage you can launch the Data Factory and create pipeline
-From Actyivities > Move and Transform > Copy data
+#2-create external data source
+IF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'renewableenergycontainer_datalakestorageren003_dfs_core_windows_net') 
+	CREATE EXTERNAL DATA SOURCE [renewableenergycontainer_datalakestorageren_dfs_core_windows_net] 
+	WITH (
+		LOCATION = 'abfss://renewableenergycontainer@datalakestorageren.dfs.core.windows.net' 
+	)
+GO
+
+#3  Role assignment to data factory
+CREATE USER [datafactoryNewEnergy] FROM EXTERNAL PROVIDER
+ALTER ROLE db_owner ADD MEMBER [datafactoryNewEnergy]
+
+#4-create external data source
+CREATE EXTERNAL TABLE dbo.renenergy (
+	  Location NVARCHAR(100),
+    Indicator NVARCHAR(100),
+    Subject NVARCHAR(100),
+    Measure NVARCHAR(100),
+    Frequency NVARCHAR(100),
+    Time NVARCHAR(100),  -- Assuming 'Time' is a year
+    Value DECIMAL(15,4),  -- Decimal with 10 digits precision and 2 digits scale
+    FlagCodes NVARCHAR(50)
+	)
+	WITH (
+	LOCATION = 'renewable_energy.csv',
+	DATA_SOURCE = [renewableenergycontainer_datalakestorageren_dfs_core_windows_net],
+	FILE_FORMAT = [SynapseDelimitedTextFormat]
+	)
+GO
+
+SELECT TOP 10 * FROM dbo.renenergy
+GO
+'''
+
+
+
+Next launch the Data Factory and create pipeline
++ +From Activities > Move and Transform > Copy data
+Clean the data and prepare for loading to Synapse for further analytics.
 ![ADF_1]
+Here is json file of creating pipeline
+'''
+{
+    "name": "pipeline1",
+    "properties": {
+        "activities": [
+            {
+                "name": "Copy Dataset",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "DelimitedTextSource",
+                        "storeSettings": {
+                            "type": "AzureBlobFSReadSettings",
+                            "recursive": true,
+                            "enablePartitionDiscovery": false
+                        },
+                        "formatSettings": {
+                            "type": "DelimitedTextReadSettings"
+                        }
+                    },
+                    "sink": {
+                        "type": "SqlDWSink",
+                        "allowPolyBase": true,
+                        "polyBaseSettings": {
+                            "rejectValue": 0,
+                            "rejectType": "value",
+                            "useTypeDefault": true
+                        }
+                    },
+                    "enableStaging": true,
+                    "stagingSettings": {
+                        "linkedServiceName": {
+                            "referenceName": "AzureDataLakeStorage1",
+                            "type": "LinkedServiceReference"
+                        },
+                        "path": "renewableenergycontainer"
+                    },
+                    "translator": {
+                        "type": "TabularTranslator",
+                        "mappings": [
+                            {
+                                "source": {
+                                    "name": "LOCATION",
+                                    "type": "String"
+                                },
+                                "sink": {
+                                    "name": "Location",
+                                    "type": "String"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "INDICATOR",
+                                    "type": "String"
+                                },
+                                "sink": {
+                                    "name": "Indicator",
+                                    "type": "String"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "SUBJECT",
+                                    "type": "String"
+                                },
+                                "sink": {
+                                    "name": "Subject",
+                                    "type": "String"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "MEASURE",
+                                    "type": "String"
+                                },
+                                "sink": {
+                                    "name": "Measure",
+                                    "type": "String"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "FREQUENCY",
+                                    "type": "String"
+                                },
+                                "sink": {
+                                    "name": "Frequency",
+                                    "type": "String"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "TIME",
+                                    "type": "String",
+                                    "format": "yyyy"
+                                },
+                                "sink": {
+                                    "name": "Time",
+                                    "type": "String"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "Value",
+                                    "type": "Decimal"
+                                },
+                                "sink": {
+                                    "name": "Value",
+                                    "type": "Decimal"
+                                }
+                            },
+                            {
+                                "source": {
+                                    "name": "Flag Codes",
+                                    "type": "String"
+                                },
+                                "sink": {
+                                    "name": "FlagCodes",
+                                    "type": "String"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "inputs": [
+                    {
+                        "referenceName": "csvrenenrfile",
+                        "type": "DatasetReference"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "AzureSynapseAnalyticsTable1",
+                        "type": "DatasetReference"
+                    }
+                ]
+            },
+           
+            
+        ],
+    
 
+    },
+    "type": "Microsoft.DataFactory/factories/pipelines"
+}
 
+```
+
++ When you sink to linked service Azure Synapse Analytics, it is ready to publish all the changes.
++ You can open Synapse and in the SQL pool and query your table to see if everything is alright.
 
 
 
