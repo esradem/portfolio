@@ -37,8 +37,8 @@ The percentage share of each renewable source in the total primary energy supply
 + Azure Data Factory Studio and Synapse Analysis workspace
 + Power BI Desktop
 After your data settled to ADLS you need to give necessary permissons to ADF and Synapse to create link services.
-1 Add you IP to Synapse Workspace through networking tab
-2 To access ADLS data, the ADF workspace should have the storage blob data contributor role in the ADLS account. This is done inside ADLS > Access Control tab
++ 1 Add you IP to Synapse Workspace through networking tab
++ 2 To access ADLS data, the ADF workspace should have the storage blob data contributor role in the ADLS account. This is done inside ADLS > Access Control tab
 ## Setup
 First inside the Azure CLI you need to connect Kaggle and pull the dataset. If you want quicker way you can:
 - Download Renewable energy dataset from Kaggle
@@ -117,7 +117,7 @@ GO
 + Next launch the Data Factory and create pipeline
 + From Activities > Move and Transform > Copy data
 + Clean the data and prepare for loading to Synapse for further analytics.
-+ ![ADF_1]
+- ![ADF_1]
 + Here is json file of creating pipeline
 ```
 #
@@ -277,12 +277,25 @@ GO
 ```
 + When you sink to linked service Azure Synapse Analytics, it is ready to publish all the changes.
 + You can open Synapse and in the SQL pool and query your table to see if everything is alright.
-First 15 Country produces Renewable Enerygy from 1960 to 2015:
+- 
+### First 15 Country Renewable Enerygy Production from 1960 to 2015:
 ```
 SELECT TOP 15 location, Time, SUM(Value) AS total_renewable_energy
 FROM dbo.renenergy
 GROUP BY location, Time
 ORDER BY total_renewable_energy DESC;
 ```
+### First 5 Country Renewable Energy Production at 2010
+```
+SELECT TOP 5  Location,
+              SUM(Value) AS total_renewable_energy
+ FROM dbo.renenergy
+WHERE  Time = '2010' 
+GROUP BY location
+ORDER BY total_renewable_energy DESC;
+```
++ After creating those table you can export them and upload to Power BI and visualize it. 
++ In order dynamic visualization you can create a link service to Power BI directly.
+## IMAGE
 
 # End
