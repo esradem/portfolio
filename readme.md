@@ -68,8 +68,8 @@ az storage blob upload --account-name yourstorageaccount --container-name yourco
 # Clean up local files if you don't need them after upload
 rm -rf /path/to/download/*
 ```
-First create external table in the Synapse serverless SQL pool.
-'''
+- First create external table in the Synapse serverless SQL pool.
+```
 #1-create external file format
 IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseDelimitedTextFormat') 
 	CREATE EXTERNAL FILE FORMAT [SynapseDelimitedTextFormat] 
@@ -113,16 +113,14 @@ GO
 
 SELECT TOP 10 * FROM dbo.renenergy
 GO
-'''
-
-
-
-Next launch the Data Factory and create pipeline
-+ +From Activities > Move and Transform > Copy data
-Clean the data and prepare for loading to Synapse for further analytics.
-![ADF_1]
-Here is json file of creating pipeline
-'''
+```
++ Next launch the Data Factory and create pipeline
++ From Activities > Move and Transform > Copy data
++ Clean the data and prepare for loading to Synapse for further analytics.
++ ![ADF_1]
++ Here is json file of creating pipeline
+```
+#
 {
     "name": "pipeline1",
     "properties": {
@@ -276,12 +274,15 @@ Here is json file of creating pipeline
     },
     "type": "Microsoft.DataFactory/factories/pipelines"
 }
-
 ```
-
 + When you sink to linked service Azure Synapse Analytics, it is ready to publish all the changes.
 + You can open Synapse and in the SQL pool and query your table to see if everything is alright.
-
-
+First 15 Country produces Renewable Enerygy from 1960 to 2015:
+```
+SELECT TOP 15 location, Time, SUM(Value) AS total_renewable_energy
+FROM dbo.renenergy
+GROUP BY location, Time
+ORDER BY total_renewable_energy DESC;
+```
 
 # End
