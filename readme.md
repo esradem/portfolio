@@ -117,7 +117,7 @@ GO
 + Next launch the Data Factory and create pipeline
 + From Activities > Move and Transform > Copy data
 + Clean the data and prepare for loading to Synapse for further analytics.
-- ![ADF_1]
+## ![ADF_1]
 + Here is json file of creating pipeline
 ```
 #
@@ -287,15 +287,14 @@ ORDER BY total_renewable_energy DESC;
 ```
 ### First 5 Country Renewable Energy Production at 2010
 ```
-SELECT TOP 5  Location,
-              SUM(Value) AS total_renewable_energy
- FROM dbo.renenergy
+SELECT TOP 5  Location, SUM(Value) AS total_renewable_energy
+FROM dbo.renenergy
 WHERE  Time = '2010' 
 GROUP BY location
 ORDER BY total_renewable_energy DESC;
 ```
 + After creating those table you can export them and upload to Power BI and visualize it. 
-+ In order dynamic visualization you can create a link service to Power BI directly.
++ In order dynamic visualization you can create a link service to Power BI directly from Azure Synapse Analytics.
 ## IMAGE
 
 # End
