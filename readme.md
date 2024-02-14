@@ -37,8 +37,8 @@ The percentage share of each renewable source in the total primary energy supply
 + Azure Data Factory Studio and Synapse Analysis workspace
 + Power BI Desktop
 After your data settled to ADLS you need to give necessary permissons to ADF and Synapse to create link services.
-+ 1 Add you IP to Synapse Workspace through networking tab
-+ 2 To access ADLS data, the ADF workspace should have the storage blob data contributor role in the ADLS account. This is done inside ADLS > Access Control tab
+[ˆ1] Add you IP to Synapse Workspace through networking tab
+[ˆ2] To access ADLS data, the ADF workspace should have the storage blob data contributor role in the ADLS account. This is done inside ADLS > Access Control tab
 ## Setup
 First inside the Azure CLI you need to connect Kaggle and pull the dataset. If you want quicker way you can:
 - Download Renewable energy dataset from Kaggle
@@ -117,7 +117,8 @@ GO
 + Next launch the Data Factory and create pipeline
 + From Activities > Move and Transform > Copy data
 + Clean the data and prepare for loading to Synapse for further analytics.
-## ![ADF_1]
+## ![Azure Data Factory Screen]
+(Images/ADF_1.png)
 + Here is json file of creating pipeline
 ```
 #
@@ -285,14 +286,18 @@ FROM dbo.renenergy
 GROUP BY location, Time
 ORDER BY total_renewable_energy DESC;
 ```
-### First 5 Country Renewable Energy Production at 2010
+### First 5 Country Renewable Energy Production at 2015
 ```
-SELECT TOP 5  Location, SUM(Value) AS total_renewable_energy
+
+SELECT TOP 20 location,
+              SUM(value) AS total_renewable_energy
 FROM dbo.renenergy
-WHERE  Time = '2010' 
-GROUP BY location
+WHERE dbo.renenergy.Time = '"2015"'
+GROUP BY Location
 ORDER BY total_renewable_energy DESC;
 ```
+
+
 + After creating those table you can export them and upload to Power BI and visualize it. 
 + In order dynamic visualization you can create a link service to Power BI directly from Azure Synapse Analytics.
 ## IMAGE
