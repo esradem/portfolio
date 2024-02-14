@@ -118,10 +118,11 @@ GO
 + From Activities > Move and Transform > Copy data
 + Clean the data and prepare for loading to Synapse for further analytics.
 ![Azure Data Factory Screen]
-(Images/ADF_1.png)
+![alt text](https://github.com/esradem/portfolio/blob/main/Images/ADF_1.png?raw=true)
 + Here is json file of creating pipeline
 ```
-#
+## Image of Synapse
+
 {
     "name": "pipeline1",
     "properties": {
