@@ -117,12 +117,11 @@ GO
 + Next launch the Data Factory and create pipeline
 + From Activities > Move and Transform > Copy data
 + Clean the data and prepare for loading to Synapse for further analytics.
-![Azure Data Factory Screen]
-![alt text](https://github.com/esradem/portfolio/blob/main/Images/ADF_1.png?raw=true)
+![Azure Data Factory Screen](https://github.com/esradem/portfolio/blob/main/Images/ADF_1.png?raw=true)
++ while uploading the data from Data Lake to Synapse true mapping is very important. Look how is the data type in Data lake csv file and how will be in the synapse data type
+![Azure Data Factory Mapping](https://github.com/esradem/portfolio/blob/main/Images/ADF_2.pngraw=true)
 + Here is json file of creating pipeline
 ```
-## Image of Synapse
-
 {
     "name": "pipeline1",
     "properties": {
