@@ -277,16 +277,16 @@ GO
 }
 ```
 + When you sink to linked service Azure Synapse Analytics, it is ready to publish all the changes.
-+ You can open Synapse and in the SQL pool and query your table to see if everything is alright.
-- 
-### First 15 Country Renewable Enerygy Production from 1960 to 2015:
++ You can open Synapse and in the SQL pool and query your table to see if everything is alright.<br />
+ For analysis in Synapse there is 2 query to see how countries benefited from the renewable resources.
+### Top 15 Country Renewable Enerygy Production from 1960 to 2015:
 ```
 SELECT TOP 15 location, Time, SUM(Value) AS total_renewable_energy
 FROM dbo.renenergy
 GROUP BY location, Time
 ORDER BY total_renewable_energy DESC;
 ```
-### First 5 Country Renewable Energy Production at 2015
+### Top 20 Country Renewable Energy Production at 2015
 ```
 
 SELECT TOP 20 location,
@@ -299,7 +299,14 @@ ORDER BY total_renewable_energy DESC;
 
 
 + After creating those table you can export them and upload to Power BI and visualize it. 
-+ In order dynamic visualization you can create a link service to Power BI directly from Azure Synapse Analytics.
++ In order dynamic visualization you can create a link service to Power BI directly from Azure Synapse Analytics.c
+(https://github.com/esradem/portfolio/blob/main/Images/Screenshot%202024-02-15%20at%2012.48.50.png?raw=true)<br />
+(https://github.com/esradem/portfolio/blob/main/Images/Screenshot%202024-02-15%20at%2012.49.26.png?raw=true)<br />
+Inside the Power BI you need to connect to SQL database using your login information and crenditials. <br />
+Then you can choose which table you want to visualize> choose the columns. If you want to edit the specific columns or exclude it as I did in the renewable energy production over time analysing per country, you can do it by clicking the Transform data.
+
+
+
 ## IMAGE
 
 # End
