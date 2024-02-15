@@ -308,7 +308,4 @@ When you select all the column you want and you can even get query from Synapse 
 ![power bi export](https://github.com/esradem/portfolio/blob/main/Images/analytics%20of%20renewableenergy_02.jpg?raw=true)
 
 
-
-## IMAGE
-
 # End
