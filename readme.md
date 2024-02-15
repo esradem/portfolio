@@ -299,9 +299,9 @@ ORDER BY total_renewable_energy DESC;
 
 
 + After creating those table you can export them and upload to Power BI and visualize it. 
-+ In order dynamic visualization you can create a link service to Power BI directly from Azure Synapse Analytics.c
-(https://github.com/esradem/portfolio/blob/main/Images/Screenshot%202024-02-15%20at%2012.48.50.png?raw=true)<br />
-(https://github.com/esradem/portfolio/blob/main/Images/Screenshot%202024-02-15%20at%2012.49.26.png?raw=true)<br />
++ In order dynamic visualization you can create a link service to Power BI directly from Azure Synapse Analytics.
+(https://github.com/esradem/portfolio/blob/main/Images/Screenshot%202024-02-15%20at%2012.48.50.png?raw=true)
+(https://github.com/esradem/portfolio/blob/main/Images/Screenshot%202024-02-15%20at%2012.49.26.png?raw=true)
 Inside the Power BI you need to connect to SQL database using your login information and crenditials. <br />
 Then you can choose which table you want to visualize> choose the columns. If you want to edit the specific columns or exclude it as I did in the renewable energy production over time analysing per country, you can do it by clicking the Transform data.
 
