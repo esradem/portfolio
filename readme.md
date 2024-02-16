@@ -20,6 +20,7 @@ Quantity of energy produced by each renewable source, measured in thousand tonne
 'The tonne of oil equivalent (toe) is a unit of energy defined as the amount of energy released by burning one tonne of crude oil. It is approximately 42 gigajoules or 11.630 megawatt-hours.'
 The percentage share of each renewable source in the total primary energy supply.
 ## Methodology
+![Method diagram](https://github.com/esradem/portfolio/blob/main/Images/Flowchart.jpg?raw=true)<br />
 ### Data Analysis:
 - Calculate the annual contribution of each renewable energy source to the TPES.
 * Analyze trends in renewable energy usage, identifying periods of significant growth or decline.
@@ -300,8 +301,8 @@ ORDER BY total_renewable_energy DESC;
 
 + After creating those table you can export them and upload to Power BI and visualize it. 
 + In order dynamic visualization you can create a link service to Power BI directly from Azure Synapse Analytics.
-![configuring power bi](https://github.com/esradem/portfolio/blob/main/Images/Screenshot%202024-02-15%20at%2012.48.50.png?raw=true)
-![configuring power bi](https://github.com/esradem/portfolio/blob/main/Images/Screenshot%202024-02-15%20at%2012.49.26.png?raw=true)
+![configuring power bi](https://github.com/esradem/portfolio/blob/main/Images/connecting_server.png?raw=true)
+![configuring power bi](https://github.com/esradem/portfolio/blob/main/Images/selecting_table.png?raw=true)
 Inside the Power BI you need to connect to SQL database using your login information and crenditials. <br />
 Then you can choose which table you want to visualize> choose the columns. If you want to edit the specific columns or exclude it as I did in the renewable energy production over time analysing per country, you can do it by clicking the Transform data.<br />
 When you select all the column you want and you can even get query from Synapse by get data button. All of the visualization in your Dashboear in Power BI you can export it as a pdf.<br />
