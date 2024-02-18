@@ -86,13 +86,13 @@ GO
 IF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'renewableenergycontainer_datalakestorageren003_dfs_core_windows_net') 
 	CREATE EXTERNAL DATA SOURCE [renewableenergycontainer_datalakestorageren_dfs_core_windows_net] 
 	WITH (
-		LOCATION = 'abfss://renewableenergycontainer@datalakestorageren.dfs.core.windows.net' 
+		LOCATION = 'abfss://rencontainer@datalakestorageren.dfs.core.windows.net' 
 	)
 GO
 
 #3  Role assignment to data factory
-CREATE USER [datafactoryNewEnergy] FROM EXTERNAL PROVIDER
-ALTER ROLE db_owner ADD MEMBER [datafactoryNewEnergy]
+CREATE USER [datafactory] FROM EXTERNAL PROVIDER
+ALTER ROLE db_owner ADD MEMBER [datafactory]
 
 #4-create external data source
 CREATE EXTERNAL TABLE dbo.renenergy (
@@ -107,7 +107,7 @@ CREATE EXTERNAL TABLE dbo.renenergy (
 	)
 	WITH (
 	LOCATION = 'renewable_energy.csv',
-	DATA_SOURCE = [renewableenergycontainer_datalakestorageren_dfs_core_windows_net],
+	DATA_SOURCE = [container_datalakestorageren_dfs_core_windows_net],
 	FILE_FORMAT = [SynapseDelimitedTextFormat]
 	)
 GO
@@ -263,7 +263,7 @@ GO
                 ],
                 "outputs": [
                     {
-                        "referenceName": "AzureSynapseAnalyticsTable1",
+                        "referenceName": "AzureSynapseAnalyticst",
                         "type": "DatasetReference"
                     }
                 ]
