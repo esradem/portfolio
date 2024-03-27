@@ -20,7 +20,7 @@ Quantity of energy produced by each renewable source, measured in thousand tonne
 'The tonne of oil equivalent (toe) is a unit of energy defined as the amount of energy released by burning one tonne of crude oil. It is approximately 42 gigajoules or 11.630 megawatt-hours.'
 The percentage share of each renewable source in the total primary energy supply.
 ## Methodology
-![Method diagram](https://github.com/esradem/portfolio/blob/main/Images/Methodology-01.jpg?raw=true)<br />
+![Method diagram](https://github.com/esradem/portfolio/blob/main/Renewable_Energy_Resources_Country_Benefits/Images/Methodology-01.jpg?raw=true)<br />
 ### Data Analysis:
 - Calculate the annual contribution of each renewable energy source to the TPES.
 * Analyze trends in renewable energy usage, identifying periods of significant growth or decline.
@@ -118,9 +118,9 @@ GO
 + Next launch the Data Factory and create pipeline
 + From Activities > Move and Transform > Copy data
 + Clean the data and prepare for loading to Synapse for further analytics.
-![Azure Data Factory Screen](https://github.com/esradem/portfolio/blob/main/Images/ADF_1.png?raw=true)
+![Azure Data Factory Screen](https://github.com/esradem/portfolio/blob/main/Renewable_Energy_Resources_Country_Benefits/Images/ADF_1.png?raw=true)
 + While uploading the data from Data Lake to Synapse true mapping is very important. Look how is the data type in Data lake csv file and how will be in the synapse data type.<br />
-![Azure Data Factory Mapping](https://github.com/esradem/portfolio/blob/main/Images/ADF_2.png?raw=true)<br />
+![Azure Data Factory Mapping](https://github.com/esradem/portfolio/blob/main/Renewable_Energy_Resources_Country_Benefits/Images/ADF_2.png?raw=true)<br />
  Here is json file of creating pipeline <br />
 ```
 {
@@ -301,12 +301,12 @@ ORDER BY total_renewable_energy DESC;
 
 + After creating those table you can export them and upload to Power BI and visualize it. 
 + In order dynamic visualization you can create a link service to Power BI directly from Azure Synapse Analytics.
-![configuring power bi](https://github.com/esradem/portfolio/blob/main/Images/connecting_server.png?raw=true)
-![configuring power bi](https://github.com/esradem/portfolio/blob/main/Images/selecting_table.png?raw=true)
+![configuring power bi](https://github.com/esradem/portfolio/blob/main/Renewable_Energy_Resources_Country_Benefits/Images/connecting_server.png?raw=true)
+![configuring power bi](https://github.com/esradem/portfolio/blob/main/Renewable_Energy_Resources_Country_Benefits/Images/selecting_table.png?raw=true)
 Inside the Power BI you need to connect to SQL database using your login information and crenditials. <br />
 Then you can choose which table you want to visualize> choose the columns. If you want to edit the specific columns or exclude it as I did in the renewable energy production over time analysing per country, you can do it by clicking the Transform data.<br />
 When you select all the column you want and you can even get query from Synapse by get data button. All of the visualization in your Dashboear in Power BI you can export it as a pdf.<br />
-![power bi export](https://github.com/esradem/portfolio/blob/main/Images/analytics%20of%20renewableenergy_02.jpg?raw=true)
+![power bi export](https://github.com/esradem/portfolio/blob/main/Renewable_Energy_Resources_Country_Benefits/Images/analytics%20of%20renewableenergy_02.jpg?raw=true)
 
 
 # End
