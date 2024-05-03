@@ -25,7 +25,7 @@ Natural Capital Per Capita: This comprises data on natural resources such as for
 Employment Rates: Specific focus on gender-based employment statistics, comparing male and female workforce participation rates globally.
 Total Wealth: The overall economic value of natural and human capital, along with produced capital.
 ## Methodology
-! [Method diagram](hhttps://github.com/esradem/portfolio/blob/main/Wealtness_of_Countries/images/FA_Arch.jpeg?raw=true)<br />
+! [Method diagram](hhttps://github.com/esradem/portfolio/blob/main/Wealtness_of_Countries/images/FA_Arch.jpeg )<br />
 ### Data Analysis:
 + Cleaning and Normalizing Data: Ensuring data consistency through the removal of null values and standardizing measurement scales.
 
@@ -59,7 +59,7 @@ Setting up the environment involves:
 ## Step by step 
 + Environment Preparation: Set up your Python environment and install necessary libraries (Pandas, Psycopg).
 + Database Configuration: Configure PostgreSQL, open Shell Script and use your password to configure postgreSQL
-![Shell script db configuration](https://github.com/esradem/portfolio/blob/main/Wealtness_of_Countries/images/Screenshot%202024-05-03%20at%2013.27.28.png?raw=true | width=100)<br />
+![Shell script db configuration](https://github.com/esradem/portfolio/blob/main/Wealtness_of_Countries/images/Screenshot%202024-05-03%20at%2013.27.28.png | width=50)<br />
 
 
  create a new database, and set up tables based on your schema design.
