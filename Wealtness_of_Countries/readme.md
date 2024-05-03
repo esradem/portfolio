@@ -62,7 +62,7 @@ Setting up the environment involves:
 + Database Configuration: Configure PostgreSQL, open Shell Script and use your password to configure postgreSQL<br />
 
 
-<img src="https://github.com/esradem/portfolio/blob/main/Wealtness_of_Countries/images/Screenshot%202024-05-03%20at%2013.27.28.png?raw=true=5x5" width="1000" height="1000">
+<img src="https://github.com/esradem/portfolio/blob/main/Wealtness_of_Countries/images/Screenshot%202024-05-03%20at%2013.27.28.png?raw=true=5x5" width="200" height="200">
 
 
 
