@@ -60,7 +60,7 @@ Setting up the environment involves:
 ## Step by step 
 + Environment Preparation: Set up your Python environment and install necessary libraries (Pandas, Psycopg).
 + Database Configuration: Configure PostgreSQL, open Shell Script and use your password to configure postgreSQL<br />
-![Shell script db configuratio](https://github.com/esradem/portfolio/blob/main/Wealtness_of_Countries/images/Screenshot%202024-05-03%20at%2013.27.28.png?=10x10raw=true)<br />
+![Shell script db configuratio](https://github.com/esradem/portfolio/blob/main/Wealtness_of_Countries/images/Screenshot%202024-05-03%20at%2013.27.28.png?raw=true=20x20)<br />
 
 
 
