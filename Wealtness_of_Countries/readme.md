@@ -58,7 +58,13 @@ Setting up the environment involves:
 3. Library Installation: Install Pandas, Psycopg, and any other necessary Python libraries using pip.
 ## Step by step 
 + Environment Preparation: Set up your Python environment and install necessary libraries (Pandas, Psycopg).
-+ Database Configuration: Configure PostgreSQL, create a new database, and set up tables based on your schema design.
++ Database Configuration: Configure PostgreSQL, open Shell Script and use your password to configure postgreSQL
+![Shell script db configuration](hhttps://github.com/esradem/portfolio/blob/main/Wealtness_of_Countries/images/FA_Arch.jpeg?raw=true)<br />
+
+
+
+
+ create a new database, and set up tables based on your schema design.
 + Data Import and Cleaning: Use Python scripts in Jupyter Notebook to import, clean, and prepare your data.
 + Data Analysis and Visualization:
 - Conduct analysis using Python and SQL queries.
